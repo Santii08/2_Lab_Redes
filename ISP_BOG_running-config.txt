@@ -1,0 +1,95 @@
+!
+version 15.1
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+no service password-encryption
+!
+hostname ISP_BOG
+!
+!
+!
+!
+!
+!
+!
+!
+no ip cef
+no ipv6 cef
+!
+!
+!
+!
+license udi pid CISCO2811/K9 sn FTX101753FS-
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+spanning-tree mode pvst
+!
+!
+!
+!
+!
+!
+interface FastEthernet0/0
+ no ip address
+ duplex auto
+ speed auto
+ shutdown
+!
+interface FastEthernet0/1
+ no ip address
+ duplex auto
+ speed auto
+ shutdown
+!
+interface Serial0/3/0
+ description Conexion a R_SOHO
+ ip address 200.190.4.2 255.255.255.0
+ clock rate 2000000
+!
+interface Serial0/3/1
+ description Conexion a ISP_NET
+ ip address 11.31.9.1 255.255.255.0
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+router ospf 1
+ log-adjacency-changes
+ network 200.190.4.0 0.0.0.255 area 0
+ network 11.31.9.0 0.0.0.255 area 0
+!
+router rip
+!
+ip classless
+!
+ip flow-export version 9
+!
+!
+!
+!
+!
+!
+!
+line con 0
+ password 1622
+ login
+!
+line aux 0
+!
+line vty 0 4
+ login
+!
+!
+!
+end
+
